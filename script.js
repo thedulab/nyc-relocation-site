@@ -1,23 +1,23 @@
-const elements = document.querySelectorAll("section, .site-header, .site-footer");
+const menuButton = document.querySelector(".menu");
+const closeButton = document.querySelector(".close");
+const panel = document.querySelector(".about-panel");
 
-const reveal = (entries, observer) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("reveal");
-      observer.unobserve(entry.target);
-    }
-  });
+const openPanel = () => {
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden", "false");
+  menuButton.setAttribute("aria-expanded", "true");
 };
 
-const observer = new IntersectionObserver(reveal, {
-  threshold: 0.2,
-});
+const closePanel = () => {
+  panel.classList.remove("open");
+  panel.setAttribute("aria-hidden", "true");
+  menuButton.setAttribute("aria-expanded", "false");
+};
 
-elements.forEach((element, index) => {
-  element.style.transitionDelay = `${index * 80}ms`;
-  observer.observe(element);
-});
-
-window.addEventListener("load", () => {
-  document.body.classList.add("ready");
+menuButton.addEventListener("click", openPanel);
+closeButton.addEventListener("click", closePanel);
+panel.addEventListener("click", (event) => {
+  if (event.target === panel) {
+    closePanel();
+  }
 });
