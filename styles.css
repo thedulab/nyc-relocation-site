@@ -25,22 +25,18 @@ body {
   position: fixed;
   top: 28px;
   right: 28px;
-  width: 30px;
-  height: 18px;
-  display: grid;
-  gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   opacity: 0.85;
   background: transparent;
   border: none;
   text-decoration: none;
-}
-
-.menu span {
-  display: block;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
 }
 
 .about {
