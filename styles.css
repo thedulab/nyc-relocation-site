@@ -299,19 +299,7 @@ hr {
   }
 
   hr {
-    display: none;
-  }
-
-  .intro {
-    order: 1;
-  }
-
-  .cta {
-    order: 2;
-  }
-
-  .body-copy {
-    order: 3;
+    margin: 6px 0;
   }
 
   .intro h1 {
