@@ -295,11 +295,12 @@ hr {
   main.home {
     min-height: 100vh;
     padding: 24px 18px 40px;
-    gap: 8px;
+    gap: 6px;
   }
 
   .intro h1 {
     font-size: clamp(2.1rem, 8vw, 2.9rem);
+    margin: 0 0 6px;
   }
 
   .intro p {
