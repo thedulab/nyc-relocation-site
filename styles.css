@@ -298,6 +298,22 @@ hr {
     gap: 24px;
   }
 
+  hr {
+    display: none;
+  }
+
+  .intro {
+    order: 1;
+  }
+
+  .cta {
+    order: 2;
+  }
+
+  .body-copy {
+    order: 3;
+  }
+
   .intro h1 {
     font-size: clamp(2.1rem, 8vw, 2.9rem);
   }
