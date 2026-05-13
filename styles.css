@@ -1,347 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Inter:wght@400;500;700&display=swap");
+
 :root {
-  color-scheme: dark;
-  --bg: #0b0b0b;
-  --ink: #f7f7f4;
-  --muted: #b2b2ad;
-  --line: rgba(247, 247, 244, 0.25);
+  --color-background: 255, 255, 255;
+  --color-foreground: 0, 0, 0;
+  --font-body-family: Assistant, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 700;
+  --font-heading-family: Assistant, sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 400;
+  --font-body-scale: 1.0;
+  --font-heading-scale: 1.0;
+  --page-width: 120rem;
+  --page-width-margin: 0rem;
 }
 
 *,
 *::before,
 *::after {
+  box-sizing: inherit;
+}
+
+html {
   box-sizing: border-box;
+  font-size: calc(var(--font-body-scale) * 62.5%);
+  height: 100%;
 }
 
 body {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100%;
   margin: 0;
-  font-family: "Europa Grotesk SB Round Alt", "Neue Haas Grotesk Text Pro",
-    "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  font-size: 18px;
+  font-size: 14px;
+  letter-spacing: -0.9px;
+  line-height: 28.8px;
+  font-family: "Inter", -apple-system, "system-ui", "Segoe UI", sans-serif;
+  font-style: var(--font-body-style);
+  font-weight: 500;
+  color: rgba(18, 18, 18, 0.85);
+  background-color: rgb(var(--color-background));
+  overflow: hidden;
 }
 
-.fade-page {
-  opacity: 0;
-  animation: page-fade 300ms ease forwards;
+body.allow-scroll {
+  overflow: auto;
 }
 
-.fade-out {
-  opacity: 0;
-  transition: opacity 200ms ease;
+body.allow-scroll .legacy-page {
+  min-height: auto;
+  padding: 32px 12px;
+  display: block;
 }
 
-@keyframes page-fade {
-  to {
-    opacity: 1;
+@media screen and (min-width: 750px) {
+  body.allow-scroll .legacy-page {
+    padding: 40px 16px;
   }
 }
 
-.top-nav {
-  position: fixed;
-  top: 24px;
-  left: auto;
-  right: 28px;
+@media screen and (min-width: 750px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+.legacy-page {
+  width: min(var(--page-width), 100%);
+  margin: 0 auto;
+  padding: 16px 8px;
+  min-height: 100vh;
   display: flex;
-  justify-content: flex-end;
-  font-size: 0.85rem;
-  color: var(--muted);
-  z-index: 10;
-}
-
-.top-nav a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.top-nav a:hover {
-  color: var(--ink);
-}
-
-.nav-right {
-  display: inline-flex;
-  gap: 18px;
-}
-
-main.page {
-  max-width: 760px;
-  margin: 120px auto 120px;
-  padding: 0 24px;
-  display: grid;
-  gap: 48px;
-}
-
-.section-title {
-  margin: 0 0 16px;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 800;
-  font-family: "Motoya Cedar W8", "Neue Haas Grotesk Text Pro", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
-  text-transform: uppercase;
-}
-
-.reveal-item {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 350ms ease, transform 350ms ease;
-}
-
-.reveal-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-main.page p {
-  margin: 0 0 12px;
-  color: var(--ink);
-}
-
-.underlined {
-  display: inline-block;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 4px;
-}
-
-main.page ul {
-  margin: 8px 0 16px;
-  padding-left: 18px;
-}
-
-main.page li {
-  margin: 6px 0;
-}
-
-main.friends {
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
-  padding-top: 80px;
-}
-
-.friends-title {
-  position: relative;
-  z-index: 2;
-  margin: 0 24px 20px;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  font-weight: 800;
-  font-family: "Motoya Cedar W8", "Neue Haas Grotesk Text Pro", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
-  text-transform: uppercase;
-}
-
-.bouncer {
-  position: absolute;
-  width: 240px;
-  height: 240px;
-  z-index: 1;
-  animation:
-    bounce-x 14s linear infinite,
-    bounce-y 9s linear infinite;
-}
-
-.bouncer img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.bouncer a {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-}
-
-.bouncer a:hover img {
-  opacity: 0.85;
-}
-
-@keyframes bounce-x {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(calc(100vw - 280px));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounce-y {
-  0% {
-    top: 100px;
-  }
-  50% {
-    top: calc(100vh - 340px);
-  }
-  100% {
-    top: 100px;
-  }
-}
-main.team {
-  max-width: 900px;
-  margin: 140px auto 120px;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.team-photo {
-  width: 260px;
-  height: 260px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-
-.team-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(100%);
-}
-
-.team-bio h1 {
-  margin: 0 0 8px;
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  font-weight: 800;
-  font-family: "Motoya Cedar W8", "Neue Haas Grotesk Text Pro", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
-  text-transform: uppercase;
-}
-
-.role {
-  margin: 0 0 16px;
-  color: var(--muted);
-}
-
-main.home {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 80px 24px;
-  gap: 6px;
-}
-
-.intro h1 {
-  margin: 0 0 12px;
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  font-weight: 800;
-  font-family: "Motoya Cedar W8", "Neue Haas Grotesk Text Pro", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
-}
-
-.intro p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.1rem;
-  max-width: 640px;
-}
-
-hr {
-  width: min(720px, 90vw);
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
-
-.body-copy p {
-  max-width: 720px;
-  margin: 0;
-  color: var(--ink);
-  font-size: 1.05rem;
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 12px 22px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  text-transform: none;
 }
 
-.cta:hover {
-  border-color: var(--ink);
+@media screen and (min-width: 750px) {
+  .legacy-page {
+    padding: 20px 12px;
+  }
+}
+
+.legacy-photo {
+  width: 100%;
+  max-width: 140px;
+  margin-bottom: 8px;
+}
+
+.legacy-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legacy-title {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Inter", -apple-system, "system-ui", "Segoe UI", sans-serif;
+  text-transform: lowercase;
+  letter-spacing: -0.8px;
+  line-height: 28.8px;
+  margin: 0 0 6px;
+  color: #a61919;
+}
+
+.legacy-copy p {
+  margin: 0;
+}
+
+.legacy-copy p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
-  .top-nav {
-    position: static;
-    padding: 16px 18px 0;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  body {
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: -0.6px;
   }
 
-  .nav-right {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+  .legacy-page {
+    padding: 12px 6px;
   }
 
-  main.home {
-    min-height: 100vh;
-    padding: 24px 18px 40px;
-    gap: 24px;
+  .legacy-photo {
+    max-width: 120px;
+  }
+}
+
+@media (max-height: 700px) {
+  body {
+    font-size: 12px;
+    line-height: 1.35;
+    letter-spacing: -0.6px;
   }
 
-  hr {
-    margin: 6px 0;
+  .legacy-photo {
+    max-width: 110px;
   }
+}
 
-  .intro h1 {
-    font-size: clamp(2.1rem, 8vw, 2.9rem);
-  }
+.legacy-copy a {
+  color: #1a0dab;
+  text-decoration: none;
+}
 
-  .intro p {
-    font-size: 1rem;
-  }
+.blue {
+  color: #1a0dab;
+}
 
-  .body-copy p {
-    font-size: 1rem;
-  }
+.legacy-copy a:hover {
+  opacity: 0.7;
+}
 
-  .cta {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-  }
-
-  main.page {
-    margin: 40px auto 80px;
-    gap: 28px;
-  }
-
-  main.team {
-    grid-template-columns: 1fr;
-    margin: 40px auto 80px;
-    gap: 28px;
-  }
-
-  .team-photo {
-    width: 220px;
-    height: 220px;
-  }
-
-  .bouncer {
-    width: 180px;
-    height: 180px;
-  }
-
-  .friends-title {
-    margin: 0 18px 16px;
-    font-size: clamp(1.8rem, 7vw, 2.6rem);
-  }
+.quote {
+  font-style: italic;
 }
